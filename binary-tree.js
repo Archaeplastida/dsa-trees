@@ -63,7 +63,17 @@ class BinaryTree {
    * which is larger than lowerBound. Return null if no such value exists. */
 
   nextLarger(lowerBound) {
+    if (!this.root) return null;
+    let nodesToVisit = [this.root], nextLargerValue = null;
 
+    while (nodesToVisit.length) {
+        let currentNode = nodesToVisit.shift(), currentValue = currentNode.val, isLargerThanThreshold = currentValue > lowerBound, shouldUpdateNextLarger = currentValue < nextLargerValue || nextLargerValue === null;
+        if (isLargerThanThreshold && shouldUpdateNextLarger) nextLargerValue = currentValue;
+        if (currentNode.left) nodesToVisit.push(currentNode.left);
+        if (currentNode.right) nodesToVisit.push(currentNode.right);
+    }
+
+    return nextLargerValue;
   }
 }
 
