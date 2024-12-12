@@ -51,9 +51,7 @@ class Tree {
 
   numGreater(lowerBound) {
     if (!this.root) return 0;
-
     let greaterCount = this.root.val > lowerBound ? 1 : 0;
-
     const traverseAndCountGreater = (currentNode) => {
       for (let descendant of currentNode.children) {
         if (descendant.val > lowerBound) greaterCount++;
